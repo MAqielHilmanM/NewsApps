@@ -1,5 +1,6 @@
 Simple News Apps
-Api : newsapi.org
+
+Api from https://newsapi.org
 
 Feature : 
 - list Top News
