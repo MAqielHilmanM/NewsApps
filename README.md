@@ -7,7 +7,7 @@ Feature :
 - detail Top News
 
 using : 
-- Kotlin Langangue
+- Kotlin Language
 - MVVM Google framework
 - Retrofit
 - RecycleView
