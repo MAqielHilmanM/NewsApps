@@ -1,3 +1,5 @@
+[On Development]
+
 Simple News Apps
 
 Api from https://newsapi.org
