@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NewsApps</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sample">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem enim. Morbi aliquet mi ac nulla elementum, vitae vehicula dolor placerat. Vestibulum semper interdum aliquet. Nullam quis vestibulum mi, faucibus volutpat augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula blandit dictum. Aenean luctus neque mauris, nec sodales ante luctus eu. Nulla eu ultricies neque.</string>
+</resources>

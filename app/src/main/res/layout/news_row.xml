@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:elevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/ivRowNewsImage"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                tools:src="@android:color/darker_gray"
+                android:scaleType="centerCrop"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                >
+                <TextView
+                    android:id="@+id/tvRowNewsTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:maxLines="2"
+                    android:textSize="18sp"
+                    tools:text="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem"
+                    android:gravity="center_vertical"
+                    />
+                <TextView
+                    android:id="@+id/tvRowNewsSource"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    tools:text="Lorem"
+                    android:gravity="center_vertical"
+                    android:layout_below="@id/tvRowNewsTitle"/>
+                <TextView
+                    android:id="@+id/tvRowNewsPublish"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical"
+                    android:layout_below="@id/tvRowNewsSource"
+                    tools:text="dd mm yyyy" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</layout>
