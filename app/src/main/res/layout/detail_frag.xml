@@ -2,6 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="action"
+            type="internship.gits.newsapps.newsdetail.DetailUserActionListener"/>
+        <variable
+            name="vm"
+            type="internship.gits.newsapps.newsdetail.DetailViewModel"/>
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,7 +23,9 @@
                 android:id="@+id/ivDetailImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:src="@android:color/darker_gray"/>
+                tools:src="@android:color/darker_gray"
+                android:transitionName="ImageNewsTrantition"
+                imageUrl="@{vm.details.urlToImage}"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,16 +39,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
-                    android:text="Lorem Ipsum Lorem Ipsum Lorem Ipsum "
+                    android:text="@{vm.details.title}"
                     android:maxLines="2"
                     android:textColor="@android:color/white"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tvDetailSource"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:text="Lorem Ipsum"
+                    android:text="@{vm.details.sourceName}"
                     android:maxLines="1"
                     android:textColor="@android:color/white"/>
             </LinearLayout>
@@ -53,19 +64,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="dd-mm-yyy"
+                android:text="@{vm.details.publishedAt}"
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/tvDetailDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/sample"
+                android:text="@{vm.details.description}"
                 android:layout_weight="4"/>
             <TextView
                 android:id="@+id/tvDetailAuthor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="By . Lorem Ipsum"/>
+                android:text="@{vm.details.author}"/>
         </LinearLayout>
         <Button
             android:id="@+id/btnDetailMore"
@@ -73,7 +84,8 @@
             android:layout_height="wrap_content"
             android:text="View More"
             android:elevation="8dp"
+            android:onClick="@{()->action.onClickMoreInfo(vm.details.url)}"
             android:background="@color/colorPrimaryDark"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </layout>

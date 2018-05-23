@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="action"
+            type="internship.gits.newsapps.news.NewsItemUserActionListener"/>
+        <variable
+            name="datas"
+            type="internship.gits.newsapps.data.News"/>
+    </data>
     <android.support.v7.widget.CardView
+        android:onClick="@{()->action.onNewsClicked(datas)}"
         android:layout_width="match_parent"
         android:layout_height="128dp"
         android:layout_marginLeft="8dp"
@@ -22,6 +31,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 tools:src="@android:color/darker_gray"
+                android:transitionName="ImageNewsTrantition"
                 android:scaleType="centerCrop"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,6 +49,7 @@
                     android:textSize="18sp"
                     tools:text="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem"
                     android:gravity="center_vertical"
+                    android:text="@{datas.title}"
                     />
                 <TextView
                     android:id="@+id/tvRowNewsSource"
@@ -48,7 +59,7 @@
                     android:textSize="14sp"
                     tools:text="Lorem"
                     android:gravity="center_vertical"
-                    android:layout_below="@id/tvRowNewsTitle"/>
+                    android:text="@{datas.sourceName}"/>
                 <TextView
                     android:id="@+id/tvRowNewsPublish"
                     android:layout_width="match_parent"
@@ -56,8 +67,8 @@
                     android:layout_weight="1"
                     android:textSize="14sp"
                     android:gravity="center_vertical"
-                    android:layout_below="@id/tvRowNewsSource"
-                    tools:text="dd mm yyyy" />
+                    tools:text="dd mm yyyy"
+                    android:text="@{datas.publishedAt}" />
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

@@ -3,7 +3,7 @@ package internship.gits.newsapps.api.dao
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-open class NewsDao {
+open class NewsApiDao {
     @SerializedName("status")
     @Expose
     open var status: String? = null

@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="vm"
+            type="internship.gits.newsapps.news.NewsViewModel"/>
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,6 +23,8 @@
             android:id="@+id/rvNewsFrag"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layoutManager="LinearLayoutManager"
+            app:newsList="@{vm.newsList}"
             tools:listitem="@layout/news_row">
 
         </android.support.v7.widget.RecyclerView>
