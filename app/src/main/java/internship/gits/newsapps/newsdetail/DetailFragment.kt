@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
 
 import internship.gits.newsapps.R
 import internship.gits.newsapps.data.News
@@ -27,15 +29,21 @@ class DetailFragment : Fragment() {
         // Inflate the layout for this fragment
         viewBinding = DetailFragBinding.inflate(inflater, container, false).apply {
             vm = (activity as DetailActivity).obtainViewModel()
+            action = object :  DetailUserActionListener {
+                override fun onClickMoreInfo(url: String) {
+                    print(url)
+                    vm?.setMoreInformation(url)
+                }
+            }
         }
         return viewBinding.root
 
     }
+
     override fun onResume() {
         super.onResume()
         viewBinding.vm?.start(arguments)
     }
-
 
     companion object {
         fun newInstance(bundle:Bundle) = DetailFragment().apply {

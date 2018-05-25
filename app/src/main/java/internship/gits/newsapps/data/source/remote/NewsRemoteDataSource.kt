@@ -24,7 +24,8 @@ object NewsRemoteDataSource : NewsDataSource {
                                 val news: News = News()
                                 news.author = items.author
                                 news.description = items.description
-                                news.publishedAt = items.publishedAt
+                                val listSparator : List<String> = items.publishedAt!!.split("T")
+                                news.publishedAt = listSparator.get(0)
                                 news.sourceId = items.source!!.id
                                 news.sourceName = items.source!!.name
                                 news.title = items.title

@@ -39,6 +39,7 @@ class DetailActivity : AppCompatActivity(), DetailUserActionListener {
     private fun setupViewModel() {
         viewModel = obtainViewModel().apply{
             openBrowser.observe(this@DetailActivity, Observer{ browser ->
+                    print(browser)
                     onClickMoreInfo(browser!!)
             })
         }
@@ -51,12 +52,16 @@ class DetailActivity : AppCompatActivity(), DetailUserActionListener {
         }
     }
     override fun onClickMoreInfo(url: String) {
-        var uri : String
-        uri = url
+        var uri:String = url
         if (!url.startsWith("http://") && !url.startsWith("https://"))
             uri = "http://" + url;
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-        startActivity(browserIntent)
+        Toast.makeText(mActivity,uri,Toast.LENGTH_SHORT).show()
+        val uris = Uri.parse(uri)
+        val intents = Intent(Intent.ACTION_VIEW, uris)
+        val b = Bundle()
+        b.putBoolean("new_window", true)
+        intents.putExtras(b)
+        mActivity.startActivity(intents)
     }
 
     private fun setupToolbar() {
