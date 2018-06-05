@@ -48,8 +48,8 @@ fun ImageView.load(path: String, request: (RequestCreator) -> RequestCreator){
 }
 
 @BindingAdapter("imageUrl")
-fun loadImage(view: ImageView, url:String) {
-    view.load(url){
-        requestCreator -> requestCreator.fit().centerCrop()
+fun loadImage(view: ImageView, url:String?) {
+    if (url != null) {
+        view.load(url){ requestCreator -> requestCreator.fit().centerCrop() }
     }
 }

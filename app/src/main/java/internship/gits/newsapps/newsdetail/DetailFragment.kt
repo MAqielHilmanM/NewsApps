@@ -30,7 +30,7 @@ class DetailFragment : Fragment() {
                 details.set(news)
             }
             action = object :  DetailUserActionListener {
-                override fun onClickMoreInfo(url : String?) {
+                override fun onClickMoreInfo() {
                     vm?.loadWeb()
                 }
             }

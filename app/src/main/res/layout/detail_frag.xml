@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:text="View More"
             android:elevation="8dp"
-            android:onClick="@{()->action.onClickMoreInfo(vm.details.url)}"
+            android:onClick="@{()->action.onClickMoreInfo()}"
             android:background="@color/colorPrimaryDark"
             android:textColor="@android:color/white" />
     </LinearLayout>

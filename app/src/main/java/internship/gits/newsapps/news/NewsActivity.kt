@@ -17,6 +17,7 @@ import internship.gits.newsapps.newsdetail.DetailActivity
 import android.R.attr.thumbnail
 import android.app.Activity
 import android.util.Pair
+import android.view.View
 
 
 class NewsActivity : AppCompatActivity(), NewsItemUserActionListener {
@@ -63,7 +64,7 @@ class NewsActivity : AppCompatActivity(), NewsItemUserActionListener {
         val intent = Intent(this, DetailActivity::class.java).apply {
             putExtras(bundle)
         }
-
+        val sharedView = viewModel.
         startActivity(intent)
 
 
