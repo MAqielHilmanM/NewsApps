@@ -8,19 +8,12 @@ import internship.gits.newsapps.util.obtainViewModel
 import internship.gits.newsapps.util.replaceFragmentInActivity
 import internship.gits.newsapps.util.setupActionBar
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.widget.Toast
-import android.view.WindowManager
-import android.os.Build
-import android.support.v7.widget.Toolbar
-import android.view.View
-import internship.gits.newsapps.R.id.toolbar
+import java.util.*
 
 
-
-
-class DetailActivity : AppCompatActivity(), DetailUserActionListener {
+class DetailActivity : AppCompatActivity() {
 
     private lateinit var mActivity: AppCompatActivity
     private lateinit var viewModel: DetailViewModel
@@ -37,10 +30,9 @@ class DetailActivity : AppCompatActivity(), DetailUserActionListener {
     }
 
     private fun setupViewModel() {
-        viewModel = obtainViewModel().apply{
-            openBrowser.observe(this@DetailActivity, Observer{ browser ->
-                    print(browser)
-                    onClickMoreInfo(browser!!)
+        viewModel = obtainViewModel().apply {
+            openBrowser.observe(this@DetailActivity, Observer { url ->
+                if (url != null) onClickMoreInfo(url)
             })
         }
     }
@@ -51,11 +43,12 @@ class DetailActivity : AppCompatActivity(), DetailUserActionListener {
             replaceFragmentInActivity(it, R.id.frameNews)
         }
     }
-    override fun onClickMoreInfo(url: String) {
-        var uri:String = url
+
+    fun onClickMoreInfo(url: String) {
+        var uri: String = url
         if (!url.startsWith("http://") && !url.startsWith("https://"))
             uri = "http://" + url;
-        Toast.makeText(mActivity,uri,Toast.LENGTH_SHORT).show()
+        Toast.makeText(mActivity, uri, Toast.LENGTH_SHORT).show()
         val uris = Uri.parse(uri)
         val intents = Intent(Intent.ACTION_VIEW, uris)
         val b = Bundle()
@@ -65,7 +58,7 @@ class DetailActivity : AppCompatActivity(), DetailUserActionListener {
     }
 
     private fun setupToolbar() {
-        setupActionBar(R.id.toolbar){
+        setupActionBar(R.id.toolbar) {
             setTitle("")
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
@@ -87,6 +80,7 @@ class DetailActivity : AppCompatActivity(), DetailUserActionListener {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             window.statusBarColor = Color.TRANSPARENT
         }*/
+
     }
 
     fun obtainViewModel(): DetailViewModel = obtainViewModel(DetailViewModel::class.java)
@@ -96,4 +90,5 @@ class DetailActivity : AppCompatActivity(), DetailUserActionListener {
         const val EXTRA_PARCELABLE = "NEWS_DATA"
 
     }
+
 }

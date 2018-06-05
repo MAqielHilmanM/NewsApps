@@ -6,11 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
-
-import internship.gits.newsapps.R
 import internship.gits.newsapps.data.News
+
 import internship.gits.newsapps.databinding.DetailFragBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,11 +25,13 @@ class DetailFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         viewBinding = DetailFragBinding.inflate(inflater, container, false).apply {
-            vm = (activity as DetailActivity).obtainViewModel()
+            vm = (activity as DetailActivity).obtainViewModel().apply {
+                val news : News = arguments.getParcelable(DetailActivity.EXTRA_PARCELABLE)
+                details.set(news)
+            }
             action = object :  DetailUserActionListener {
-                override fun onClickMoreInfo(url: String) {
-                    print(url)
-                    vm?.setMoreInformation(url)
+                override fun onClickMoreInfo(url : String?) {
+                    vm?.loadWeb()
                 }
             }
         }
@@ -42,7 +41,8 @@ class DetailFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewBinding.vm?.start(arguments)
+
+        viewBinding.vm?.start()
     }
 
     companion object {
