@@ -58,7 +58,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     fun onClickMoreInfo(url: String) {
-        finishAfterTransition()
+//        finishAfterTransition()
         var uri: String = url
         if (!url.startsWith("http://") && !url.startsWith("https://"))
             uri = "http://" + url;

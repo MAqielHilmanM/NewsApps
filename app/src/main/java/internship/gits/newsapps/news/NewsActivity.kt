@@ -31,7 +31,7 @@ class NewsActivity : AppCompatActivity(), NewsItemUserActionListener {
     }
 
     private fun setupTransition() {
-        postponeEnterTransition()
+        //postponeEnterTransition()
         val enterTransition = Slide()
         enterTransition.duration = 500
         enterTransition.slideEdge = Gravity.RIGHT
