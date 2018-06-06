@@ -64,7 +64,6 @@ class NewsActivity : AppCompatActivity(), NewsItemUserActionListener {
         val intent = Intent(this, DetailActivity::class.java).apply {
             putExtras(bundle)
         }
-        val sharedView = viewModel.
         startActivity(intent)
 
 
