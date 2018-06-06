@@ -46,7 +46,6 @@ val Context.picasso: Picasso
 fun ImageView.load(path: String, request: (RequestCreator) -> RequestCreator){
     request(context.picasso.load(path)).into(this)
 }
-
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url:String?) {
     if (url != null) {

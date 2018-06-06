@@ -1,16 +1,17 @@
 package internship.gits.newsapps.newsdetail
 
 import android.arch.lifecycle.Observer
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.transition.Slide
+import android.view.Gravity
+import android.widget.Toast
 import internship.gits.newsapps.R
 import internship.gits.newsapps.util.obtainViewModel
 import internship.gits.newsapps.util.replaceFragmentInActivity
 import internship.gits.newsapps.util.setupActionBar
-import android.content.Intent
-import android.net.Uri
-import android.widget.Toast
-import java.util.*
 
 
 class DetailActivity : AppCompatActivity() {
@@ -25,8 +26,20 @@ class DetailActivity : AppCompatActivity() {
         setupToolbar()
         setupFragment()
         setupViewModel()
-
+        setupTransition()
         mActivity = this
+    }
+
+    override fun onBackPressed() {
+        finishAfterTransition()
+        super.onBackPressed()
+    }
+
+    private fun setupTransition() {
+        val enterTransition = Slide()
+        enterTransition.duration = 500
+        enterTransition.slideEdge = Gravity.RIGHT
+        window.enterTransition = enterTransition
     }
 
     private fun setupViewModel() {
@@ -45,6 +58,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     fun onClickMoreInfo(url: String) {
+//        finishAfterTransition()
         var uri: String = url
         if (!url.startsWith("http://") && !url.startsWith("https://"))
             uri = "http://" + url;
