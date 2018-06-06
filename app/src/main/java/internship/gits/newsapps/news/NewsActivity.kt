@@ -1,23 +1,17 @@
 package internship.gits.newsapps.news
 
-import android.app.ActivityOptions
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
+import android.transition.Slide
+import android.view.Gravity
 import internship.gits.newsapps.R
 import internship.gits.newsapps.data.News
-import internship.gits.newsapps.newsdetail.DetailFragment
+import internship.gits.newsapps.newsdetail.DetailActivity
 import internship.gits.newsapps.util.obtainViewModel
 import internship.gits.newsapps.util.replaceFragmentInActivity
 import internship.gits.newsapps.util.setupActionBar
-import android.support.v4.content.ContextCompat.startActivity
-import internship.gits.newsapps.newsdetail.DetailActivity
-import android.R.attr.thumbnail
-import android.app.Activity
-import android.util.Pair
-import android.view.View
 
 
 class NewsActivity : AppCompatActivity(), NewsItemUserActionListener {
@@ -32,8 +26,17 @@ class NewsActivity : AppCompatActivity(), NewsItemUserActionListener {
         setupToolbar()
         setupFragment()
         setupViewModel()
-
+        setupTransition()
         mActivity = this
+    }
+
+    private fun setupTransition() {
+        postponeEnterTransition()
+        val enterTransition = Slide()
+        enterTransition.duration = 500
+        enterTransition.slideEdge = Gravity.RIGHT
+        window.enterTransition = enterTransition
+
     }
 
 
@@ -54,19 +57,17 @@ class NewsActivity : AppCompatActivity(), NewsItemUserActionListener {
 
     private fun setupToolbar() {
         setupActionBar(R.id.toolbar){
-            setTitle("NewsApp")
+            title = "NewsApp"
         }
     }
 
     override fun onNewsClicked(news : News){
-        val bundle : Bundle = Bundle()
+        val bundle = Bundle()
         bundle.putParcelable(DetailActivity.EXTRA_PARCELABLE,news)
         val intent = Intent(this, DetailActivity::class.java).apply {
             putExtras(bundle)
         }
-        val sharedView = viewModel.
         startActivity(intent)
-
 
     }
 
