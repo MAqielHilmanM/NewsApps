@@ -6,9 +6,9 @@ import internship.gits.newsapps.data.source.local.NewsLocalDataSource
 class NewsRepository(
         val remoteDataSource: NewsDataSource,
         val localDataSource: NewsLocalDataSource
-) : NewsDataSource{
+) : NewsDataSource {
     override fun getNews(callback: NewsDataSource.GetNewsCallback) {
-        remoteDataSource.getNews(object : NewsDataSource.GetNewsCallback{
+        remoteDataSource.getNews(object : NewsDataSource.GetNewsCallback {
             override fun onNewsLoaded(news: MutableList<News>?) {
                 callback.onNewsLoaded(news)
             }
@@ -29,13 +29,13 @@ class NewsRepository(
 
         @JvmStatic
         fun getInstance(newsRemoteDataSource: NewsDataSource, newsLocalDataSource: NewsLocalDataSource) =
-                INSTANCE ?: synchronized(NewsRepository::class.java){
-                    INSTANCE ?: NewsRepository(newsRemoteDataSource,newsLocalDataSource)
+                INSTANCE ?: synchronized(NewsRepository::class.java) {
+                    INSTANCE ?: NewsRepository(newsRemoteDataSource, newsLocalDataSource)
                             .also { INSTANCE = it }
                 }
 
         @JvmStatic
-        fun destroyInstance(){
+        fun destroyInstance() {
             INSTANCE = null
         }
     }
